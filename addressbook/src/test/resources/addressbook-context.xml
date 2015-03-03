@@ -7,13 +7,20 @@
                            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <context:component-scan base-package="com.number.word.codetest" scoped-proxy="interfaces"/>
+    <context:component-scan base-package="com.gumtree.uk.addressbook" scoped-proxy="interfaces"/>
   
     <mvc:annotation-driven />
 	<context:annotation-config />
+
+	<bean class="com.gumtree.uk.addressbook.dao.AddressBookDaoImpl" id="addressBookDao"/>
 	
-	<bean id="wordHelper" class="com.number.word.codetest.util.WordHelper" />
+	<bean class="com.gumtree.uk.addressbook.service.AddressBookServiceImpl" id="addressBookService"/>
 	
-	<bean id="wordConverter" class="com.number.word.codetest.converter.WordConverterImpl" />
-     
+	<bean class="com.gumtree.uk.addressbook.repository.AddressBookRepositoryImpl" id="addressBookRepository"/>
+	
+	<bean id="gumtreeAddressBookReader"
+		class="com.gumtree.uk.addressbook.util.GumtreeAddressBookReader"
+		init-method="loadPropertiesFile">
+		<property name="filename" value="classpath:resources.properties" />
+	</bean>
 </beans>

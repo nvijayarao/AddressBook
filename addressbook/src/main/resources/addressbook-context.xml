@@ -12,9 +12,15 @@
     <mvc:annotation-driven />
 	<context:annotation-config />
 
+	<bean class="com.gumtree.uk.addressbook.dao.AddressBookDaoImpl" id="addressBookDao"/>
+	
+	<bean class="com.gumtree.uk.addressbook.service.AddressBookServiceImpl" id="addressBookService"/>
+	
+	<bean class="com.gumtree.uk.addressbook.repository.AddressBookRepositoryImpl" id="addressBookRepository"/>
+	
 	<bean id="gumtreeAddressBookReader"
 		class="com.gumtree.uk.addressbook.util.GumtreeAddressBookReader"
 		init-method="loadPropertiesFile">
-		<property name="filename" value="classpath:AddressBook.properties" />
+		<property name="filename" value="classpath:resources.properties" />
 	</bean>
 </beans>
